@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4296845254723935151}
   - component: {fileID: 6499249938609828000}
   - component: {fileID: 5327746203279193984}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 199777965656046850}
   - component: {fileID: 8252166839318624696}
   - component: {fileID: 1169003935615341834}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 1548190755591530637}
   - component: {fileID: 2402508859939247794}
   - component: {fileID: 5285255787131444804}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Diana1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +339,8 @@ GameObject:
   - component: {fileID: 3606508703480196346}
   - component: {fileID: 5872044539602800245}
   - component: {fileID: 7868251883621574982}
-  m_Layer: 0
+  - component: {fileID: 2282827081199393181}
+  m_Layer: 3
   m_Name: Objetivo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,6 +439,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &2282827081199393181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293053710527935689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8113984bb7e434aa262dec50186475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 10
 --- !u!1 &5884504851572384957
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +464,7 @@ GameObject:
   - component: {fileID: 1845472918467464533}
   - component: {fileID: 5936310391840990807}
   - component: {fileID: 881682513622472868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Diana2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +575,7 @@ GameObject:
   - component: {fileID: 3169289958961726924}
   - component: {fileID: 3838006660848676859}
   - component: {fileID: 5068886336506064486}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Diana3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,7 +686,7 @@ GameObject:
   - component: {fileID: 1694943231990677993}
   - component: {fileID: 2381009886035949472}
   - component: {fileID: 8488626712981303516}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
