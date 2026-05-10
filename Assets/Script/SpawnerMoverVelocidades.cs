@@ -23,8 +23,8 @@ public class SpawnerMoverVelocidades : MonoBehaviour
 
     IEnumerator SpawnerLoop()
     {
-        Quaternion rotacion = Quaternion.Euler(-90f, 0f, 0f);
-        Vector3 escala = new Vector3(0.3f, 0.05f, 0.3f);
+        Quaternion rotacion = prefab.transform.rotation;
+        Vector3 escala = new Vector3(1, 1, 1);
 
         while (true) // bucle infinito
         {
@@ -33,7 +33,7 @@ public class SpawnerMoverVelocidades : MonoBehaviour
                 for (int j = 0; j < repeticionesPorPosicion; j++)
                 {
                     GameObject instancia = Instantiate(prefab, pos, rotacion);
-                    instancia.transform.localScale = escala;
+                    //instancia.transform.localScale = escala;
 
                     // Asignar velocidad según Y
                     float velocidad = 2f; // normal por defecto

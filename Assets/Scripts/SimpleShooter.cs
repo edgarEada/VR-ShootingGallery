@@ -32,20 +32,12 @@ public class SimpleShooter : MonoBehaviour
         {
         Debug.Log("Impacto en: " + hit.transform.name);
         
-        // Cambia esto en SimpleShooter.cs
-Target target = hit.transform.GetComponentInParent<Target>(); // Busca en el objeto golpeado o sus padres
+        // Esto es vital porque el rayo golpea al hijo, pero el script está en el padre
+        Target target = hit.transform.GetComponentInParent<Target>(); 
 
         if (target != null)
         {
             target.OnHit(hit.point, muzzle.forward);
-        }
-        
-        if (target != null)
-        {
-            // CAMBIA ESTA LÍNEA:
-            // Pasamos hit.point (donde chocó el rayo) 
-            // y muzzle.forward (hacia dónde apuntaba el arma)
-            target.OnHit(hit.point, muzzle.forward); 
         }
     }
         // Reproducir sonido de disparo

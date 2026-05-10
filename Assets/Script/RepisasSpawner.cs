@@ -20,10 +20,13 @@ public class RepisasSpawner : MonoBehaviour
     {
         while (true)
         {
-            Vector3 posicionAjustada = repisa.position + new Vector3(0, 100f, 0);
-            Quaternion rotacionDePie = Quaternion.Euler(-90, 0, 0); // ajusta según tu modelo
+            // 1. Primero definimos la rotación usando el transform del prefab
+            Quaternion rotacionDePie = prefabObjetivo.transform.rotation; 
+
+            // 2. Ahora usamos esa variable para instanciar el objeto
             GameObject obj = Instantiate(prefabObjetivo, repisa.position, rotacionDePie);
 
+            // El resto del código se mantiene igual
             MovimientoObjetivo mover = obj.AddComponent<MovimientoObjetivo>();
             mover.velocidad = velocidad;
 

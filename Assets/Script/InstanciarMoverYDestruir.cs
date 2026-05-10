@@ -17,8 +17,8 @@ public class InstanciarMoverDestruir : MonoBehaviour
             new Vector3(2.14f, 0.971f, -4.12f)
         };
 
-        Quaternion rotacion = Quaternion.Euler(-90f, 0f, 0f);
-        Vector3 escala = new Vector3(0.3f, 0.05f, 0.3f);
+        Quaternion rotacion = prefab.transform.rotation;
+        Vector3 escala = new Vector3(1, 1, 1);
 
         // Instanciamos varias veces en cada posición
         for (int i = 0; i < 1; i++)
@@ -26,7 +26,7 @@ public class InstanciarMoverDestruir : MonoBehaviour
             for (int j = 0; j < 3; j++) // número de repeticiones por posición
             {
                 GameObject instancia = Instantiate(prefab, posicionesIniciales[i], rotacion);
-                instancia.transform.localScale = escala;
+                //instancia.transform.localScale = escala;
                 StartCoroutine(MoverHastaX(instancia, velocidad));
             }
         }
