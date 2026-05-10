@@ -52,13 +52,19 @@ public class SpawnerMoverVelocidades : MonoBehaviour
 
     IEnumerator MoverHastaX(GameObject objeto, float velocidad)
     {
-        while (objeto != null && objeto.transform.position.x < destinoX)
+        // Obtenemos el script Target para vigilar el estado de la diana
+        Target scriptTarget = objeto.GetComponent<Target>();
+
+        // Añadimos la condición: && (scriptTarget == null || !scriptTarget.wasHit)
+        while (objeto != null && objeto.transform.position.x < destinoX && (scriptTarget == null || !scriptTarget.wasHit))
         {
             objeto.transform.position += Vector3.right * velocidad * Time.deltaTime;
             yield return null;
         }
 
-        if (objeto != null)
+        // Si el objeto llegó al destino (no fue golpeado), lo destruimos
+        // Si fue golpeado, dejamos que el Target.cs lo destruya después de volar
+        if (objeto != null && scriptTarget != null && !scriptTarget.wasHit)
         {
             Destroy(objeto);
         }

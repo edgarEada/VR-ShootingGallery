@@ -21,28 +21,32 @@ public class InstanciarMoverDestruir : MonoBehaviour
         Vector3 escala = new Vector3(0.3f, 0.05f, 0.3f);
 
         // Instanciamos varias veces en cada posición
-        for (int i = 0; i < posicionesIniciales.Length; i++)
+        for (int i = 0; i < 1; i++)
         {
             for (int j = 0; j < 3; j++) // número de repeticiones por posición
             {
                 GameObject instancia = Instantiate(prefab, posicionesIniciales[i], rotacion);
                 instancia.transform.localScale = escala;
-                StartCoroutine(MoverHastaX(instancia));
+                StartCoroutine(MoverHastaX(instancia, velocidad));
             }
         }
     }
 
-    IEnumerator MoverHastaX(GameObject objeto)
+    IEnumerator MoverHastaX(GameObject objeto, float velocidad)
     {
-        // Mientras no haya llegado al destino
-        while (objeto != null && objeto.transform.position.x < destinoX)
+        // Obtenemos el script Target para vigilar el estado de la diana
+        Target scriptTarget = objeto.GetComponent<Target>();
+
+        // Añadimos la condición: && (scriptTarget == null || !scriptTarget.wasHit)
+        while (objeto != null && objeto.transform.position.x < destinoX && (scriptTarget == null || !scriptTarget.wasHit))
         {
             objeto.transform.position += Vector3.right * velocidad * Time.deltaTime;
             yield return null;
         }
 
-        // Al llegar al destino, destruir
-        if (objeto != null)
+        // Si el objeto llegó al destino (no fue golpeado), lo destruimos
+        // Si fue golpeado, dejamos que el Target.cs lo destruya después de volar
+        if (objeto != null && scriptTarget != null && !scriptTarget.wasHit)
         {
             Destroy(objeto);
         }
