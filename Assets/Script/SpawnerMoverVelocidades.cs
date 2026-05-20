@@ -24,7 +24,7 @@ public class SpawnerMoverVelocidades : MonoBehaviour
     IEnumerator SpawnerLoop()
     {
         Quaternion rotacion = prefab.transform.rotation;
-        Vector3 escala = new Vector3(1, 1, 1);
+        // Vector3 escala = new Vector3(1, 1, 1); // Ya no forzamos la escala
 
         while (true) // bucle infinito
         {
@@ -33,14 +33,33 @@ public class SpawnerMoverVelocidades : MonoBehaviour
                 for (int j = 0; j < repeticionesPorPosicion; j++)
                 {
                     GameObject instancia = Instantiate(prefab, pos, rotacion);
-                    //instancia.transform.localScale = escala;
 
-                    // Asignar velocidad según Y
+                    // 1. Asignar velocidad y puntos según la altura Y
                     float velocidad = 2f; // normal por defecto
+                    int puntos = 20;      // 20 puntos por defecto
+
                     if (Mathf.Approximately(pos.y, 1.775f))
+                    {
                         velocidad = 4f; // rápido
+                        puntos = 30;    // Mayor puntuación
+                    }
                     else if (Mathf.Approximately(pos.y, 0.971f))
+                    {
                         velocidad = 1f; // lento
+                        puntos = 10;    // Menor puntuación
+                    }
+
+                    // 2. Buscar el script Target (en el padre o en el hijo) y asignar puntos
+                    Target scriptTarget = instancia.GetComponentInChildren<Target>();
+                    
+                    if (scriptTarget != null)
+                    {
+                        scriptTarget.scoreValue = puntos;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Error: El Spawner no encontró el script 'Target' en el prefab " + instancia.name);
+                    }
 
                     StartCoroutine(MoverHastaX(instancia, velocidad));
                 }
@@ -52,8 +71,9 @@ public class SpawnerMoverVelocidades : MonoBehaviour
 
     IEnumerator MoverHastaX(GameObject objeto, float velocidad)
     {
-        // Obtenemos el script Target para vigilar el estado de la diana
-        Target scriptTarget = objeto.GetComponent<Target>();
+        // 3. ACTUALIZACIÓN CRÍTICA: También usamos GetComponentInChildren aquí 
+        // para que la lógica de movimiento detecte correctamente si la diana fue golpeada
+        Target scriptTarget = objeto.GetComponentInChildren<Target>();
 
         // Añadimos la condición: && (scriptTarget == null || !scriptTarget.wasHit)
         while (objeto != null && objeto.transform.position.x < destinoX && (scriptTarget == null || !scriptTarget.wasHit))

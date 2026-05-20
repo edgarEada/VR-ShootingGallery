@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ProyectoFinalVideojuegos.sln"
+    "dotnet.defaultSolution": "ProyectoFinalVideojuegos.sln",
+    "FSharp.suggestGitignore": false
 }

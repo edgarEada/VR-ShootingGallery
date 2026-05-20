@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    // Ocultamos esta variable en el Inspector para evitar sobrescrituras manuales,
+    // ya que ahora el Spawner controla dinámicamente este valor.
+    [HideInInspector]
     public int scoreValue = 10;
     public float impactForce = 500f;
     public AudioClip hitSound;
